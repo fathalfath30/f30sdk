@@ -1,0 +1,9 @@
+# JetBrains or any other IDE
+.idea
+
+# project files
+storage
+*.env
+
+# do not ignore following item
+!*.env.example
