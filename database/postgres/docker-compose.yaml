@@ -1,0 +1,27 @@
+# fathalfath30 sdk database setup
+# this docker compose is used to running database such asa Postgres and MySql
+name: "database"
+services:
+  postgresql:
+    container_name: postgresql
+    restart: unless-stopped
+    # set the service image
+    image: postgres:15
+    platform: linux/amd64
+    # service port
+    # expose necessary port for the service so it can be
+    # accessed from other service
+    ports:
+      - "5432:5432"
+    # service environment
+    # provide any required environment variable for the services
+    environment:
+      TZ: ${SERVICE_TIMEZONE}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+    # mount service storage to the host
+    volumes:
+      - "../../../storage:/var/lib/postgresql/data"
+      - "./config/postgresql.conf:/etc/postgresql/postgresql.conf:ro"
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf

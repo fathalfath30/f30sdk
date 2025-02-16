@@ -22,4 +22,4 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     # persistent volume for storing mysql data
     volumes:
-      - "./../storage/mysql:/var/lib/mysql"
+      - "./../../storage/mysql:/var/lib/mysql"
